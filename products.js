@@ -3,7 +3,7 @@ let products = [
       "id": 1001,
       "title": "Maths",
       "description": "For those who have trouble with maths",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -12,7 +12,7 @@ let products = [
       "id": 1002,
       "title": "Chemistry",
       "description": "For those who have trouble with Chemistry",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -21,7 +21,7 @@ let products = [
       "id": 1003,
       "title": "Phsisics",
       "description": "For those who have trouble with physics",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -30,7 +30,7 @@ let products = [
       "id": 1004,
       "title": "Biology",
       "description": "For those who need to catch up in Biology",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -39,7 +39,7 @@ let products = [
       "id": 1005,
       "title": "English",
       "description": "For those who need to catch up in English class",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -48,7 +48,7 @@ let products = [
       "id": 1006,
       "title": "French",
       "description": "So the subject isn't french to you",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -57,7 +57,7 @@ let products = [
       "id": 1007,
       "title": "Arabic",
       "description": "such a beautiful languge",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -66,7 +66,7 @@ let products = [
       "id": 1008,
       "title": "Music",
       "description": "if your skills need tuning up",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -75,7 +75,7 @@ let products = [
       "id": 1009,
       "title": "History",
       "description": "So its not quite such a mystery",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 
@@ -84,7 +84,7 @@ let products = [
       "id": 1010,
       "title": "IT",
       "description": "Quite the employable Skill",
-      "price": ,
+      "price": 25,
       "image": "",
       "availableInventory": ,
       "rating": 

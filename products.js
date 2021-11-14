@@ -1,6 +1,6 @@
 let products = [
     {
-      "id": ,
+      "id": 1001,
       "title": "",
       "description": "",
       "price": ,
@@ -9,7 +9,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1002,
       "title": "",
       "description": "",
       "price": ,
@@ -18,7 +18,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1003,
       "title": "",
       "description": "",
       "price": ,
@@ -27,7 +27,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1004,
       "title": "",
       "description": "",
       "price": ,
@@ -36,7 +36,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1005,
       "title": "",
       "description": "",
       "price": ,
@@ -45,7 +45,7 @@ let products = [
       "rating": 
     }
         {
-      "id": ,
+      "id": 1006,
       "title": "",
       "description": "",
       "price": ,
@@ -54,7 +54,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1007,
       "title": "",
       "description": "",
       "price": ,
@@ -63,7 +63,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1008,
       "title": "",
       "description": "",
       "price": ,
@@ -72,7 +72,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1009,
       "title": "",
       "description": "",
       "price": ,
@@ -81,7 +81,7 @@ let products = [
       "rating": 
     },
     {
-      "id": ,
+      "id": 1010,
       "title": "",
       "description": "",
       "price": ,

@@ -1,7 +1,7 @@
 let products = [
     {
       "id": 1001,
-      "title": "",
+      "title": "Maths",
       "description": "",
       "price": ,
       "image": "",
@@ -10,7 +10,7 @@ let products = [
     },
     {
       "id": 1002,
-      "title": "",
+      "title": "Chemistry",
       "description": "",
       "price": ,
       "image": "",
@@ -19,7 +19,7 @@ let products = [
     },
     {
       "id": 1003,
-      "title": "",
+      "title": "Phsisics",
       "description": "",
       "price": ,
       "image": "",
@@ -28,7 +28,7 @@ let products = [
     },
     {
       "id": 1004,
-      "title": "",
+      "title": "Biology",
       "description": "",
       "price": ,
       "image": "",
@@ -37,7 +37,7 @@ let products = [
     },
     {
       "id": 1005,
-      "title": "",
+      "title": "English",
       "description": "",
       "price": ,
       "image": "",
@@ -46,7 +46,7 @@ let products = [
     }
         {
       "id": 1006,
-      "title": "",
+      "title": "French",
       "description": "",
       "price": ,
       "image": "",
@@ -55,7 +55,7 @@ let products = [
     },
     {
       "id": 1007,
-      "title": "",
+      "title": "Arabic",
       "description": "",
       "price": ,
       "image": "",
@@ -64,7 +64,7 @@ let products = [
     },
     {
       "id": 1008,
-      "title": "",
+      "title": "Music",
       "description": "",
       "price": ,
       "image": "",
@@ -73,7 +73,7 @@ let products = [
     },
     {
       "id": 1009,
-      "title": "",
+      "title": "History",
       "description": "",
       "price": ,
       "image": "",
@@ -82,7 +82,7 @@ let products = [
     },
     {
       "id": 1010,
-      "title": "",
+      "title": "IT",
       "description": "",
       "price": ,
       "image": "",

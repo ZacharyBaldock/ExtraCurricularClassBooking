@@ -32,8 +32,8 @@
                     Add to cart
                     </button> -->
 
-                    <button v-on:click='addToCart(product)' v-if='canAddToCart(product)'>Add to cart</button>
-
+                    <button v-on:click='addToCart(product)' v-if='canAddToCart(product)'>Add to cart<i class="fas fa-cart-arrow-down"></i></button>
+                    
                     <button disabled="disabled" v-else>Add to cart</button>
 
                     <span v-if='product.availableInventory === cartCount(product.id)'>All out!</span>
@@ -54,16 +54,17 @@
                 <p>
                     <strong>First Name:</strong>
                     <!-- This input field is bound to 'firstName' in the 'order' object -->
-                    <input v-model.trim="order.firstName" />
+                    <input v-model.trim="order.firstName" type="text" onkeypress="allowOnlyLetters(event,this)" />   
                 </p>
                 <p>
                     <strong>Last Name:</strong>
                     <!-- This input field is bound to 'lastName' in the 'order' object -->
-                    <input v-model.trim="order.lastName" />
+                    <input v-model.trim="order.lastName" type="text" onkeypress="allowOnlyLetters(event,this)"/>
+                    
                 </p>
                 <p>
-                    <strong>Address:</strong>
-                    <input v-model="order.address" />
+                    <strong>Phone Number:</strong>
+                    <input v-model="order.Phone" type="number"/>
                 </p>
                 <p>
                     <strong>City:</strong>
@@ -86,27 +87,23 @@
                     <strong>Zip / Postal Code:</strong>
                     <input v-model.number="order.zip" type="number" />
                 </p>
-
-                <p><input type="checkbox" id="gift" value="true" v-model="order.gift" v-bind:true-value="order.sendGift"
-                        v-bind:false-value="order.dontSendGift">
-                    <label for="gift">Ship As Gift?</label></p>
-
-                <p>
-                    <input type="radio" id="home" value="Home" v-model="order.method">
-                    <label for="home">Home</label>
-                    <input type="radio" id="business" value="Business" v-model="order.method">
-                    <label for="business">Business</label>
-                </p>
+                <button onclick="Checkout()">Checkout</button>
+                <!-- //this function is the checkout button which also provides a conformation message -->
+                <script>
+                    function Checkout() {
+                        alert("Your order has been made")
+                    }
+                </script>
 
                 <h2>Order Information</h2>
                 <p>First Name: {{order.firstName}}</p>
                 <p>Last Name: {{order.lastName}}</p>
-                <p>Address: {{order.address}}</p>
+                <p>Phone Number: {{order.Phone}}</p>
                 <p>City: {{order.city}}</p>
                 <p>Zip: {{order.zip}}</p>
                 <p>State: {{order.state}}</p>
-                <p>Gift? {{order.gift}}</p>
-                <p>Method: {{order.method}}</p><div v-if='showProduct'>
+                <!-- <p>Method: {{order.method}}</p> -->
+                <div v-if='showProduct'>
                     <div v-for="product in sortedProducts">
                         <h2 v-text="product.title"></h2>
                         <figure>
@@ -142,14 +139,10 @@
                 order: {
                     firstName: '',
                     lastName: '',
-                    address: '',
+                    PhoneNumber: '',
                     city: '',
                     zip: '',
                     state: '',
-                    method: 'Home',
-                    gift: 'Send as a gift',
-                    sendGift: 'Send as a gift',
-                    dontSendGift: 'Do not send as a gift'
                 },
                 states: {
                     AL: 'Alabama',
@@ -158,10 +151,37 @@
                     NV: 'Nevada'
                 },
             },
-            // created: function () {
-            //     this.products = allProducts
-            // },
+             created: function () {
+                 this.products = allProducts
+             },
+             ///for this i have tried to implmenet a letters only filter to the name fields but for some reason it just doe not work
+        //      function firstName(inputtxt)
+        //      {
+        //          var letters = /^[A-Za-z]+$/;
+        //          if(inputtxt.value.match(letters))
+        //          {
+        //              return true;
+        //          }
+        //          else
+        //          {alert("Plese only input letters in first name field");
+        //          return false;
+        //      }
+        //  }
+        //  function lastName(inputtxt)
+        //      {
+        //          var letters = /^[A-Za-z]+$/;
+        //          if(inputtxt.value.match(letters))
+        //          {
+        //              return true;
+        //          }
+        //          else
+        //          {alert("Plese only input letters in last name field");
+        //          return false;
+        //      }
+        //  }
+            
             methods: {
+                
                 addToCart(product) {
                     this.cart.push(product.id);
                     // console.log('adding to cart', product.id)
@@ -187,12 +207,14 @@
                 }
             },
             computed: {
+                
                 cartItemCount() {
                     return this.cart.length;
                 },
                 // canAddToCart(product) {
                 //     return product.availableInventory > this.cartItemCount;
                 // }
+                
                 sortedProducts() {
                     let productsArray = this.products.slice(0);
                     function compare(a, b) {
@@ -204,9 +226,33 @@
                     }
                     return productsArray.sort(compare);
                 }
+                
             },
+            
         });
     </script>
+<script language="Javascript" type="text/javascript">    
+    
+    function allowOnlyLetters(e, t)   
+    {    
+       if (window.event)    
+       {    
+          var charCode = window.event.keyCode;    
+       }    
+       else if (e)   
+       {    
+          var charCode = e.which;    
+       }    
+       else { return true; }    
+       if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))    
+           return true;    
+       else  
+       {    
+          alert("Please enter only alphabets");    
+          return false;    
+       }           
+    }      
+    </script>   
 </body>
 
 </html>

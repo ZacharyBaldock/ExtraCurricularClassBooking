@@ -1,0 +1,259 @@
+<html>
+
+<head>
+    <title>Vue.js Class Booking</title>
+    <p>go to this link to veiw the page on githubpages: https://zacharybaldock.github.io/ExtraVurricularClassBooking/checkout1.html</p>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1 v-text="sitename"></h1>
+            <button v-on:click='showCheckout'>
+                {{cartItemCount}}
+                <span class="fas fa-cart-plus"></span> Checkout
+            </button>
+        </header>
+        <main>
+            <div v-if='showProduct'>
+                <div v-for="product in sortedProducts">
+                    <h2 v-text="product.title"></h2>
+                    <figure>
+                        <img v-bind:src="product.image">
+                    </figure>
+                    <p v-html="product.description"></p>
+                    <p>Price: {{product.price}}</p>
+                    <p>Available stock: {{product.availableInventory -cartCount(product.id) }}</p>
+
+                    <!-- <button v-on:click="addToCart" 
+                    v-show='canAddToCart'>
+                    Add to cart
+                    </button> -->
+
+                    <button v-on:click='addToCart(product)' v-if='canAddToCart(product)'>Add to cart<i class="fas fa-cart-arrow-down"></i></button>
+                    
+                    <button disabled="disabled" v-else>Add to cart</button>
+
+                    <span v-if='product.availableInventory === cartCount(product.id)'>All out!</span>
+                    <span v-else-if="product.availableInventory - cartCount(product.id) < 5">
+                        Only {{product.availableInventory - cartCount(product.id)}} left!
+                    </span>
+                    <span v-else>Buy now!</span>
+
+                    <div>
+                        <span v-for='n in product.rating'>★ </span>
+                        
+                        <span v-for='n in 5-product.rating'>☆</span>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <h2>Checkout</h2>
+                <p>
+                    <strong>First Name:</strong>
+                    <!-- This input field is bound to 'firstName' in the 'order' object -->
+                    <input v-model.trim="order.firstName" type="text" onkeypress="allowOnlyLetters(event,this)" />   
+                </p>
+                <p>
+                    <strong>Last Name:</strong>
+                    <!-- This input field is bound to 'lastName' in the 'order' object -->
+                    <input v-model.trim="order.lastName" type="text" onkeypress="allowOnlyLetters(event,this)"/>
+                    
+                </p>
+                <p>
+                    <strong>Phone Number:</strong>
+                    <input v-model="order.Phone" type="number"/>
+                </p>
+                <p>
+                    <strong>City:</strong>
+                    <input v-model="order.city" />
+                </p>
+                <p>
+                    <strong>State:</strong>
+                    <select v-model="order.state">
+                        <option disabled value="">State</option>
+                        <option v-for="(state, key) in states" v-bind:value="state">
+                            {{key}}
+                        </option>
+                        <!-- <option v-bind:value="states.AL">AL</option>
+                        <option v-bind:value="states.AR">AR</option>
+                        <option v-bind:value="states.CA">CA</option>
+                        <option v-bind:value="states.NV">NV</option> -->
+                    </select>
+                </p>
+                <p>
+                    <strong>Zip / Postal Code:</strong>
+                    <input v-model.number="order.zip" type="number" />
+                </p>
+                <button onclick="Checkout()">Checkout</button>
+                <!-- //this function is the checkout button which also provides a conformation message -->
+                <script>
+                    function Checkout() {
+                        alert("Your order has been made")
+                    }
+                </script>
+
+                <h2>Order Information</h2>
+                <p>First Name: {{order.firstName}}</p>
+                <p>Last Name: {{order.lastName}}</p>
+                <p>Phone Number: {{order.Phone}}</p>
+                <p>City: {{order.city}}</p>
+                <p>Zip: {{order.zip}}</p>
+                <p>State: {{order.state}}</p>
+                <!-- <p>Method: {{order.method}}</p> -->
+                <div v-if='showProduct'>
+                    <div v-for="product in sortedProducts">
+                        <h2 v-text="product.title"></h2>
+                        <figure>
+                            <img v-bind:src="product.image">
+                        </figure>
+                        <p v-html="product.description"></p>
+                        <p>Price: {{product.price}}</p>
+                    </div>
+
+
+                <button v-on:click="submitForm">Place Order</button>
+            </div>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+        var webstore = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Vue.js Class Booking',
+                products: products,
+                // product: {
+                //     id: 1001,
+                //     title: "Cat Food, 25lb bag",
+                //     description: "A 25 pound bag of <em>irresistible</em>, " + "organic goodness for your cat.",
+                //     price: 2000,
+                //     image: "images/product-fullsize.png",
+                //     availableInventory: 10,
+                //     rating: 3
+                // },
+                cart: [],
+                showProduct: true,
+                order: {
+                    firstName: '',
+                    lastName: '',
+                    PhoneNumber: '',
+                    city: '',
+                    zip: '',
+                    state: '',
+                },
+                states: {
+                    AL: 'Alabama',
+                    AR: 'Arizona',
+                    CA: 'California',
+                    NV: 'Nevada'
+                },
+            },
+             created: function () {
+                 this.products = allProducts
+             },
+             ///for this i have tried to implmenet a letters only filter to the name fields but for some reason it just doe not work
+        //      function firstName(inputtxt)
+        //      {
+        //          var letters = /^[A-Za-z]+$/;
+        //          if(inputtxt.value.match(letters))
+        //          {
+        //              return true;
+        //          }
+        //          else
+        //          {alert("Plese only input letters in first name field");
+        //          return false;
+        //      }
+        //  }
+        //  function lastName(inputtxt)
+        //      {
+        //          var letters = /^[A-Za-z]+$/;
+        //          if(inputtxt.value.match(letters))
+        //          {
+        //              return true;
+        //          }
+        //          else
+        //          {alert("Plese only input letters in last name field");
+        //          return false;
+        //      }
+        //  }
+            
+            methods: {
+                
+                addToCart(product) {
+                    this.cart.push(product.id);
+                    // console.log('adding to cart', product.id)
+                },
+                showCheckout() {
+                    // console.log(this.showProduct);
+                    this.showProduct = this.showProduct ? false : true;
+                },
+                submitForm() {
+                    alert('Order submitted!')
+                },
+                canAddToCart(product) {
+                    return product.availableInventory > this.cartCount(product.id);
+                },
+                cartCount(id) {
+                    let count = 0;
+                    for (let i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i] === id) {
+                            count++;
+                        }
+                    }
+                    return count;
+                }
+            },
+            computed: {
+                
+                cartItemCount() {
+                    return this.cart.length;
+                },
+                // canAddToCart(product) {
+                //     return product.availableInventory > this.cartItemCount;
+                // }
+                
+                sortedProducts() {
+                    let productsArray = this.products.slice(0);
+                    function compare(a, b) {
+                        if (a.price > b.price)
+                            return 1;
+                        if (a.price < b.price)
+                            return -1;
+                        return 0;
+                    }
+                    return productsArray.sort(compare);
+                }
+                
+            },
+            
+        });
+    </script>
+<script language="Javascript" type="text/javascript">    
+    
+    function allowOnlyLetters(e, t)   
+    {    
+       if (window.event)    
+       {    
+          var charCode = window.event.keyCode;    
+       }    
+       else if (e)   
+       {    
+          var charCode = e.which;    
+       }    
+       else { return true; }    
+       if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))    
+           return true;    
+       else  
+       {    
+          alert("Please enter only alphabets");    
+          return false;    
+       }           
+    }      
+    </script>   
+</body>
+
+</html>
